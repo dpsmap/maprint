@@ -4,7 +4,7 @@ import { jsPDF } from 'jspdf';
 import { PrintOptions, PAGE_SIZES, ShapefileLayer } from '@/types/gis';
 import { toast } from '@/hooks/use-toast';
 import { t } from '@/lib/translations';
-import type L from 'leaflet';
+import type { Map as LeafletMap } from 'leaflet';
 
 export function useMapExport() {
   const [isExporting, setIsExporting] = useState(false);
@@ -108,7 +108,7 @@ export function useMapExport() {
     }
   }, []);
 
-  const calculateScale = useCallback((map: L.Map | null): string => {
+  const calculateScale = useCallback((map: LeafletMap | null): string => {
     if (!map) return '1:100,000';
 
     const zoom = map.getZoom();
